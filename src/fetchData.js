@@ -20,6 +20,6 @@ function showLoadingScreen() {
 }
 
 function deleteLoadingScreen() {
-  document.querySelector(".loadingScreen").style.display = "none";
+  document.querySelector(".loadingScreen").remove();
   document.querySelector(".currentWeather").style.display = "flex";
 }

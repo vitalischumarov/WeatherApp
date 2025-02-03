@@ -5,15 +5,17 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: lightgray;
 }
 
 .app {
-  height: 778px;
-  width: 400px;
+  /* height: 900px;
+  width: 400px; */
+  height: 100%;
+  width: 100%;
   background-color: rgb(82, 101, 147);
 }
 
-/* Main block */
 .currentWeather {
   display: flex;
   justify-content: center;
@@ -45,6 +47,13 @@ body {
   background: rgba(255, 255, 255, 0.8);
   padding: 10px;
   border-radius: 5px;
+}
+
+@media screen and (min-width: 700px) {
+  .app {
+    height: 900px;
+    width: 400px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
