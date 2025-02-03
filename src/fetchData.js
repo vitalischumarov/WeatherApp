@@ -16,7 +16,9 @@ function showLoadingScreen() {
   const loadingDiv = document.createElement("div");
   loadingDiv.setAttribute("class", "loadingScreen");
   loadingDiv.innerHTML = loadingText;
-  document.querySelector(".app").appendChild(loadingDiv);
+  const rootElement = document.documentElement;
+  rootElement.appendChild(loadingDiv);
+  // document.querySelector(".app").appendChild(loadingDiv);
 }
 
 function deleteLoadingScreen() {
