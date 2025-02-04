@@ -8,23 +8,26 @@ body {
   background-color: lightgray;
 }
 
+.text {
+  color: white;
+}
+
 .app {
-  /* height: 900px;
-  width: 400px; */
   height: 100%;
   width: 100%;
   background-color: rgb(82, 101, 147);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
+/* CURRENT WAETHER */
 .currentWeather {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-}
-.currentWeather__mainInformation {
-  color: white;
 }
 
 .city {
@@ -37,6 +40,7 @@ body {
   padding-bottom: 0.4rem;
 }
 
+/* LOADING SCREEN */
 .loadingScreen {
   position: absolute;
   top: 50%;
@@ -47,6 +51,28 @@ body {
   background: rgba(255, 255, 255, 0.8);
   padding: 10px;
   border-radius: 5px;
+}
+
+/* FORECAST WEATHER */
+.forecastWeather {
+  width: 85%;
+  backdrop-filter: blur(10px);
+  border: 1px solid black;
+  padding: 0.3rem;
+  margin-top: 1.5rem;
+}
+
+.forecastData {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.allForcasts {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
 }
 
 @media screen and (min-width: 700px) {
