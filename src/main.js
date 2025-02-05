@@ -1,7 +1,7 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 
-let cityName = "Mailand";
+let cityName = "Bielefeld";
 let forcastDays = 3;
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=${forcastDays}`;
@@ -16,6 +16,7 @@ let data = await fetchWeatherData(WEATHER_API);
 displayCityInformation(data);
 displayForcastInformationText(data);
 displayAllForeCast(data);
+getCurrentTime();
 
 function displayCityInformation(city) {
   cityNameEl.innerHTML = city.location.name;
@@ -27,7 +28,6 @@ function displayCityInformation(city) {
 function displayForcastInformationText(city) {
   const forcastTextEl = document.querySelector(".forecastWeather__text");
   forcastTextEl.innerHTML = `Heute ${city.forecast.forecastday[0].day.condition.text}. Wind bis zu ${city.forecast.forecastday[0].day.maxwind_kph} km/h`;
-  const forcastImage = document.querySelector(".img");
 }
 
 function createSingleForcastBlock(time, image, temp) {
@@ -62,15 +62,31 @@ function displayForecast(forecastBlock) {
 }
 
 function displayAllForeCast(forecastDate) {
-  for (let i = 0; i < 9; i++) {
+  let nextHour = getCurrentTime();
+  let selectedDay = 0;
+  for (let i = 0; i <= 23; i++) {
+    console.log(i);
+    console.log(selectedDay);
     createSingleForcastBlock(
-      renderForecastTime(forecastDate.forecast.forecastday[0].hour[i].time),
-      forecastDate.forecast.forecastday[0].hour[i].condition.icon,
-      forecastDate.forecast.forecastday[0].hour[i].temp_c,
+      renderForecastTime(
+        forecastDate.forecast.forecastday[0].hour[nextHour].time,
+      ),
+      forecastDate.forecast.forecastday[selectedDay].hour[nextHour].condition
+        .icon,
+      forecastDate.forecast.forecastday[selectedDay].hour[nextHour].temp_c,
     );
-    console.log(forecastDate.forecast.forecastday[0].hour[i].time);
-    console.log(forecastDate.forecast.forecastday[0].hour[i].condition.text);
+    nextHour = nextHour + 1;
+    if (nextHour > 23) {
+      nextHour = 0;
+      selectedDay = 1;
+    }
   }
+}
+
+function getCurrentTime() {
+  const currentTime = new Date();
+  const hour = currentTime.getHours();
+  return hour + 1;
 }
 
 function renderForecastTime(time) {
