@@ -56,11 +56,13 @@ body {
 /* FORECAST WEATHER */
 .forecastWeather {
     width: 85%;
-    backdrop-filter: blur(10px);
-    border: 1px solid black;
-    padding: 0.3rem;
+    padding: 0.8rem;
     margin-top: 1.5rem;
+    border-radius: 5px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
 }
+
 .forecastData {
     display: flex;
     align-items: center;
@@ -72,6 +74,10 @@ body {
     display: flex;
     gap: 2rem;
     overflow-x: auto;
+}
+
+.allForcasts::-webkit-scrollbar {
+    display: none;
 }
 
 @media screen and (min-width: 700px) {

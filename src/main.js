@@ -1,10 +1,9 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 
-let cityName = "Bielefeld";
-let forcastDays = 3;
+let cityName = "Kloten";
 // https://www.weatherapi.com/docs/#
-const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=${forcastDays}`;
+const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
 const cityNameEl = document.querySelector(".city");
 const weatherEl = document.querySelector(".weather");
@@ -65,11 +64,10 @@ function displayAllForeCast(forecastDate) {
   let nextHour = getCurrentTime();
   let selectedDay = 0;
   for (let i = 0; i <= 23; i++) {
-    console.log(i);
-    console.log(selectedDay);
     createSingleForcastBlock(
       renderForecastTime(
-        forecastDate.forecast.forecastday[0].hour[nextHour].time,
+        forecastDate.forecast.forecastday[selectedDay].hour[nextHour].time,
+        i,
       ),
       forecastDate.forecast.forecastday[selectedDay].hour[nextHour].condition
         .icon,
@@ -86,9 +84,13 @@ function displayAllForeCast(forecastDate) {
 function getCurrentTime() {
   const currentTime = new Date();
   const hour = currentTime.getHours();
-  return hour + 1;
+  return hour;
 }
 
-function renderForecastTime(time) {
-  return time.split(" ")[1];
+function renderForecastTime(time, hour) {
+  if (hour === 0) {
+    return "now";
+  } else {
+    return time.split(" ")[1];
+  }
 }
