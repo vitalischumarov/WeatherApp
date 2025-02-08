@@ -129,8 +129,13 @@ function createUIForThreeDayForeCast(showDate, icon, temperature, windSpeed) {
 }
 
 function renderNextDay(forecastDay) {
+  let day = "";
   for (let i = 0; i < 3; i++) {
-    let day = getWeekDay(forecastDay.forecast.forecastday[i].date);
+    if (i === 0) {
+      day = "Heute";
+    } else {
+      day = getWeekDay(forecastDay.forecast.forecastday[i].date);
+    }
     let temp = `H: ${forecastDay.forecast.forecastday[i].day.maxtemp_c} L: ${forecastDay.forecast.forecastday[i].day.mintemp_c}`;
     let icon = forecastDay.forecast.forecastday[i].day.condition.icon;
     let windSpeed = forecastDay.forecast.forecastday[i].day.maxwind_kph;
