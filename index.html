@@ -8,6 +8,7 @@
     </head>
     <body>
         <div class="app">
+            <!-- SHOWS THE CURRENT WEATHER -->
             <div class="currentWeather">
                 <span class="currentWeather__mainInformation city text"></span>
                 <span
@@ -20,10 +21,18 @@
                     class="currentWeather__mainInformation forcast text"
                 ></span>
             </div>
+            <!-- SHOWS THE NEXT 25 HOURS-->
             <div class="forecastWeather">
                 <div class="forecastWeather__text text"></div>
                 <hr />
                 <div class="allForcasts"></div>
+            </div>
+            <!-- FORECAST OF THE NEXT THREE DAYS -->
+            <div class="threeDayForecast">
+                <div class="threeDayForecast__text text">
+                    Vorhersagen für die nächsten 3 Tage:
+                </div>
+                <hr />
             </div>
         </div>
         <script type="module" src="/src/main.js"></script>

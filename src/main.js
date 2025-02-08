@@ -1,7 +1,7 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 
-let cityName = "Kloten";
+let cityName = "Basel";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -15,7 +15,7 @@ let data = await fetchWeatherData(WEATHER_API);
 displayCityInformation(data);
 displayForcastInformationText(data);
 displayAllForeCast(data);
-getCurrentTime();
+renderNextDay(data);
 
 function displayCityInformation(city) {
   cityNameEl.innerHTML = city.location.name;
@@ -93,4 +93,54 @@ function renderForecastTime(time, hour) {
   } else {
     return time.split(" ")[1];
   }
+}
+
+function createUIForThreeDayForeCast(showDate, icon, temperature, windSpeed) {
+  const forecastToday = document.createElement("div");
+  forecastToday.classList.add("forecastToday");
+  forecastToday.classList.add("styleDay");
+  const forecastToday__day = document.createElement("div");
+  forecastToday__day.classList.add("forecastToday__day");
+  forecastToday__day.classList.add("text");
+  const day = document.createTextNode(showDate);
+  forecastToday__day.appendChild(day);
+  const forecastToday__icon = document.createElement("div");
+  const image = document.createElement("img");
+  image.setAttribute("src", icon);
+  image.classList.add("img_threeDayForecast");
+  forecastToday__icon.appendChild(image);
+  const forecastToday__temp = document.createElement("div");
+  forecastToday__temp.classList.add("forecastToday__temp");
+  forecastToday__temp.classList.add("text");
+  const temp = document.createTextNode(temperature);
+  forecastToday__temp.appendChild(temp);
+  const forecastToday__wind = document.createElement("div");
+  forecastToday__wind.classList.add("forecastToday__wind");
+  forecastToday__wind.classList.add("text");
+  const wind = document.createTextNode(`Wind: ${windSpeed} km/h`);
+  forecastToday__wind.appendChild(wind);
+
+  forecastToday.appendChild(forecastToday__day);
+  forecastToday.appendChild(forecastToday__icon);
+  forecastToday.appendChild(forecastToday__temp);
+  forecastToday.appendChild(forecastToday__wind);
+
+  document.querySelector(".threeDayForecast").appendChild(forecastToday);
+}
+
+function renderNextDay(forecastDay) {
+  for (let i = 0; i < 3; i++) {
+    let day = getWeekDay(forecastDay.forecast.forecastday[i].date);
+    let temp = `H: ${forecastDay.forecast.forecastday[i].day.maxtemp_c} L: ${forecastDay.forecast.forecastday[i].day.mintemp_c}`;
+    let icon = forecastDay.forecast.forecastday[i].day.condition.icon;
+    let windSpeed = forecastDay.forecast.forecastday[i].day.maxwind_kph;
+
+    createUIForThreeDayForeCast(day, icon, temp, windSpeed);
+  }
+}
+
+function getWeekDay(date) {
+  const weekdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+  const dayIndex = new Date(date).getDay();
+  return weekdays[dayIndex];
 }

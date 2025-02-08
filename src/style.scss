@@ -1,3 +1,4 @@
+@use "__mixin" as *;
 body {
     margin: 0;
     padding: 0;
@@ -55,12 +56,7 @@ body {
 
 /* FORECAST WEATHER */
 .forecastWeather {
-    width: 85%;
-    padding: 0.8rem;
-    margin-top: 1.5rem;
-    border-radius: 5px;
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.1);
+    @include dataArea;
 }
 
 .forecastData {
@@ -78,6 +74,22 @@ body {
 
 .allForcasts::-webkit-scrollbar {
     display: none;
+}
+
+/* Styling für die näxhsten 3 Tage */
+.threeDayForecast {
+    @include dataArea;
+}
+
+.styleDay {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+.img_threeDayForecast {
+    height: 1.5rem;
 }
 
 @media screen and (min-width: 700px) {
