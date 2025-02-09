@@ -1,7 +1,7 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 
-let cityName = "Basel";
+let cityName = "Bielefeld";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -16,6 +16,7 @@ displayCityInformation(data);
 displayForcastInformationText(data);
 displayAllForeCast(data);
 renderNextDay(data);
+displayDetailView(data);
 
 function displayCityInformation(city) {
   cityNameEl.innerHTML = city.location.name;
@@ -148,4 +149,20 @@ function getWeekDay(date) {
   const weekdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
   const dayIndex = new Date(date).getDay();
   return weekdays[dayIndex];
+}
+
+function displayDetailView(day) {
+  const humidity = document.querySelector(".humidity");
+  const feel = document.querySelector(".feel");
+  const sunrise = document.querySelector(".sunrise");
+  const sunset = document.querySelector(".sunset");
+  const rain = document.querySelector(".rain");
+  const uvindex = document.querySelector(".uvindex");
+
+  humidity.innerHTML = `${day.current.humidity}%`;
+  feel.innerHTML = `${day.current.feelslike_c}°`;
+  sunrise.innerHTML = day.forecast.forecastday[0].astro.sunrise;
+  sunset.innerHTML = day.forecast.forecastday[0].astro.sunset;
+  uvindex.innerHTML = day.forecast.forecastday[0].day.uv;
+  rain.innerHTML = `${day.forecast.forecastday[0].day.totalprecip_mm}mm`;
 }
