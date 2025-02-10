@@ -1,7 +1,7 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 
-let cityName = "Bielefeld";
+let cityName = "Moskau";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -161,8 +161,23 @@ function displayDetailView(day) {
 
   humidity.innerHTML = `${day.current.humidity}%`;
   feel.innerHTML = `${day.current.feelslike_c}°`;
-  sunrise.innerHTML = day.forecast.forecastday[0].astro.sunrise;
-  sunset.innerHTML = day.forecast.forecastday[0].astro.sunset;
+  sunrise.innerHTML = convertTime(day.forecast.forecastday[0].astro.sunrise);
+  sunset.innerHTML = convertTime(day.forecast.forecastday[0].astro.sunset);
   uvindex.innerHTML = day.forecast.forecastday[0].day.uv;
   rain.innerHTML = `${day.forecast.forecastday[0].day.totalprecip_mm}mm`;
+}
+
+function convertTime(timeString) {
+  const [time, period] = timeString.split(" ");
+  let [hours, minutes] = time.split(":").map((num) => parseInt(num));
+
+  if (period === "AM" && hours === 12) {
+    hours = 0;
+  } else if (period === "PM" && hours !== 12) {
+    hours += 12;
+  }
+  const hoursFormatted = hours.toString().padStart(2, "0");
+  const minutesFormatted = minutes.toString().padStart(2, "0");
+
+  return `${hoursFormatted}:${minutesFormatted} Uhr`;
 }
