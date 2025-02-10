@@ -1,7 +1,8 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
+import { getConditionImagePath } from "./conditions";
 
-let cityName = "Moskau";
+let cityName = "Bern";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -17,6 +18,12 @@ displayForcastInformationText(data);
 displayAllForeCast(data);
 renderNextDay(data);
 displayDetailView(data);
+
+let isDay = dayOrNight(data, getCurrentHour(data));
+let conditionCode = getConditionCode(data, getCurrentHour(data));
+
+let conditionImage = getConditionImagePath(conditionCode, isDay);
+displayConditionImage(conditionImage);
 
 function displayCityInformation(city) {
   cityNameEl.innerHTML = city.location.name;
@@ -180,4 +187,29 @@ function convertTime(timeString) {
   const minutesFormatted = minutes.toString().padStart(2, "0");
 
   return `${hoursFormatted}:${minutesFormatted} Uhr`;
+}
+
+function getCurrentHour(city) {
+  const currentHour = new Date(city.location.localtime).getHours();
+  return currentHour;
+}
+
+function dayOrNight(city, currentHour) {
+  const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
+  const isDay = false;
+  if (dayStatus === 1) {
+    isDay = true;
+  }
+}
+
+function getConditionCode(city, currentHour) {
+  const conditionCode =
+    city.forecast.forecastday[0].hour[currentHour].condition.code;
+  return conditionCode;
+}
+
+function displayConditionImage(image) {
+  const background = document.querySelector(".app");
+  console.log(image);
+  background.style.backgroundImage = `url(${image})`;
 }
