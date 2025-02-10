@@ -2,7 +2,7 @@ import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 import { getConditionImagePath } from "./conditions";
 
-let cityName = "Tokyo";
+let cityName = "Peking";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -70,7 +70,6 @@ function displayForecast(forecastBlock) {
 
 function displayAllForeCast(forecastDate) {
   let time = getCurrentHour(forecastDate);
-  console.log(time);
   let selectedDay = 0;
   for (let i = 0; i <= 23; i++) {
     createSingleForcastBlock(
@@ -196,7 +195,6 @@ function getCurrentHour(city) {
 
 function dayOrNight(city, currentHour) {
   const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
-  console.log(dayStatus);
   if (dayStatus === 1) {
     return false;
   } else {
@@ -212,6 +210,5 @@ function getConditionCode(city, currentHour) {
 
 function displayConditionImage(image) {
   const background = document.querySelector(".app");
-  console.log(image);
   background.style.backgroundImage = `url(${image})`;
 }

@@ -31,6 +31,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    @include dataArea;
 }
 
 .city {
@@ -97,7 +98,7 @@ body {
 .detailView {
     /* @include dataArea; */
     width: 92%;
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
