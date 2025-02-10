@@ -2,7 +2,7 @@ import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 import { getConditionImagePath } from "./conditions";
 
-let cityName = "FLorida";
+let cityName = "Tokyo";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -198,8 +198,7 @@ function dayOrNight(city, currentHour) {
   const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
   console.log(dayStatus);
   if (dayStatus === 1) {
-    isDay = false;
-    return true;
+    return false;
   } else {
     return true;
   }
