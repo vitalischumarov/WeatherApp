@@ -2,7 +2,7 @@ import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 import { getConditionImagePath } from "./conditions";
 
-let cityName = "Bern";
+let cityName = "FLorida";
 // https://www.weatherapi.com/docs/#
 const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -69,21 +69,21 @@ function displayForecast(forecastBlock) {
 }
 
 function displayAllForeCast(forecastDate) {
-  let nextHour = getCurrentTime();
+  let time = getCurrentHour(forecastDate);
+  console.log(time);
   let selectedDay = 0;
   for (let i = 0; i <= 23; i++) {
     createSingleForcastBlock(
       renderForecastTime(
-        forecastDate.forecast.forecastday[selectedDay].hour[nextHour].time,
+        forecastDate.forecast.forecastday[selectedDay].hour[time].time,
         i,
       ),
-      forecastDate.forecast.forecastday[selectedDay].hour[nextHour].condition
-        .icon,
-      forecastDate.forecast.forecastday[selectedDay].hour[nextHour].temp_c,
+      forecastDate.forecast.forecastday[selectedDay].hour[time].condition.icon,
+      forecastDate.forecast.forecastday[selectedDay].hour[time].temp_c,
     );
-    nextHour = nextHour + 1;
-    if (nextHour > 23) {
-      nextHour = 0;
+    time = time + 1;
+    if (time > 23) {
+      time = 0;
       selectedDay = 1;
     }
   }
@@ -196,9 +196,12 @@ function getCurrentHour(city) {
 
 function dayOrNight(city, currentHour) {
   const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
-  const isDay = false;
+  console.log(dayStatus);
   if (dayStatus === 1) {
-    isDay = true;
+    isDay = false;
+    return true;
+  } else {
+    return true;
   }
 }
 
