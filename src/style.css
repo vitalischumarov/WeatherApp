@@ -13,6 +13,18 @@ body {
   color: white;
 }
 
+.header {
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.backIcon {
+  color: white;
+  height: 20px;
+}
+
 .app {
   height: 100%;
   width: 100%;
@@ -60,9 +72,9 @@ body {
 .forecastWeather {
   width: 85%;
   padding: 0.8rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   border-radius: 5px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(70px);
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -87,9 +99,9 @@ body {
 .threeDayForecast {
   width: 85%;
   padding: 0.8rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   border-radius: 5px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(70px);
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -107,7 +119,7 @@ body {
 .detailView {
   /* @include dataArea; */
   width: 92%;
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

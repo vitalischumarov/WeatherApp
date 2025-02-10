@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather App</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="header">
+                <span class="header__text">Wetter</span>
+                <button class="header__button">Bearbeiten</button>
+            </div>
+            <div class="inputField">
+                <input
+                    type="text"
+                    class="inputField__element"
+                    placeholder="Gebe den Namen einer Stadt an"
+                />
+            </div>
+            <div class="favoriteList">
+                <div class="favorite">
+                    <div class="description"></div>
+                    <div class="values"></div>
+                </div>
+                <div class="favorite"></div>
+                <div class="favorite"></div>
+            </div>
+        </div>
+        <script type="module" src="./secondView.js"></script>
+    </body>
+</html>
