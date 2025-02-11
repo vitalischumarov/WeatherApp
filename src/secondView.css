@@ -8,6 +8,10 @@ body {
   background-color: lightgray;
 }
 
+.text {
+  color: white;
+}
+
 .app {
   height: 100%;
   width: 600px;
@@ -37,10 +41,40 @@ body {
 
 .inputField {
   width: 95%;
+  margin-bottom: 2rem;
 }
 .inputField__element {
   width: 95%;
   height: 2rem;
+}
+
+.favoriteList {
+  width: 98%;
+}
+
+.favorite {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: blue;
+  padding: 1rem;
+  margin: 1rem;
+}
+.favorite__description {
+  display: flex;
+  flex-direction: column;
+}
+.favorite__values {
+  display: flex;
+  flex-direction: column;
+}
+
+.city {
+  font-size: 1.5rem;
+}
+
+.temperature {
+  font-size: 2rem;
 }
 
 @media screen and (min-width: 700px) {
