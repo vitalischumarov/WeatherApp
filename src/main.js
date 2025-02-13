@@ -2,9 +2,9 @@ import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 import { getConditionImagePath } from "./conditions";
 
-let cityName = "Arosa";
+export let cityName = "Berlin";
 // https://www.weatherapi.com/docs/#
-const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
+// const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
 const cityNameEl = document.querySelector(".city");
 const weatherEl = document.querySelector(".weather");
@@ -12,7 +12,7 @@ const conditionEl = document.querySelector(".condition");
 const forcastEl = document.querySelector(".forcast");
 
 // Hier werden alle wichtigen Funktionen aufgerufen, wenn die App startet
-let data = await fetchWeatherData(WEATHER_API);
+let data = await fetchWeatherData(cityName);
 displayCityInformation(data);
 displayForcastInformationText(data);
 displayAllForeCast(data);
@@ -202,7 +202,7 @@ function dayOrNight(city, currentHour) {
   }
 }
 
-function getConditionCode(city, currentHour) {
+export function getConditionCode(city, currentHour) {
   const conditionCode =
     city.forecast.forecastday[0].hour[currentHour].condition.code;
   return conditionCode;
