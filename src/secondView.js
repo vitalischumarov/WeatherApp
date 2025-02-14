@@ -1,6 +1,12 @@
 import "./secondView.scss";
 import { fetchWeatherData } from "./fetchData";
-// import { getConditionCode } from "./main";
+import {
+  getConditionCode,
+  dayOrNight,
+  getCurrentHour,
+} from "./excludedFunction";
+import { getConditionImagePath } from "./conditions";
+// import { cityName } from "./main";
 
 const testCities = ["Basel", "Kyoto", "Moskau"];
 
@@ -9,6 +15,10 @@ loadFavorietCities(testCities);
 async function loadFavorietCities(city) {
   for (let i = 0; i < city.length; i++) {
     let data = await fetchWeatherData(testCities[i]);
+    const currentHour = getCurrentHour(data);
+    const isDay = dayOrNight(data, currentHour);
+    const conditionCode = getConditionCode(data, currentHour);
+    const imagePath = getConditionImagePath(conditionCode, isDay);
     displayCities(
       data.location.name,
       data.location.country,
@@ -16,12 +26,12 @@ async function loadFavorietCities(city) {
       data.current.temp_c,
       data.forecast.forecastday[0].day.maxtemp_c,
       data.forecast.forecastday[0].day.mintemp_c,
-      // getConditionCode(data),
+      imagePath,
     );
   }
 }
 
-function displayCities(name, country, condition, temp, maxTemp, minTemp) {
+function displayCities(name, country, condition, temp, maxTemp, minTemp, img) {
   let city = `
         <div class="favorite__description">
           <span class="text city">${name}</span>
@@ -36,6 +46,7 @@ function displayCities(name, country, condition, temp, maxTemp, minTemp) {
         </div>`;
   const favorite = document.createElement("div");
   favorite.classList.add("favorite");
+  favorite.style.backgroundImage = `url(${img})`;
   favorite.addEventListener("click", function () {
     goToDetailView(name);
   });
@@ -46,6 +57,11 @@ function displayCities(name, country, condition, temp, maxTemp, minTemp) {
 }
 
 function goToDetailView(name) {
-  console.log(name);
-  window.location.href = "../index.html";
+  saveToLocalStorage(name);
+  window.location.href = "./index.html";
+}
+
+function saveToLocalStorage(name) {
+  localStorage.setItem("nameOfCity", name);
+  console.log("saved");
 }

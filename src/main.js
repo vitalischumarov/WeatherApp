@@ -1,8 +1,13 @@
 import "./style.scss";
 import { fetchWeatherData } from "./fetchData";
 import { getConditionImagePath } from "./conditions";
+import {
+  getConditionCode,
+  dayOrNight,
+  getCurrentHour,
+} from "./excludedFunction";
 
-export let cityName = "Berlin";
+export let cityName = "Einsiedeln";
 // https://www.weatherapi.com/docs/#
 // const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -188,27 +193,33 @@ function convertTime(timeString) {
   return `${hoursFormatted}:${minutesFormatted} Uhr`;
 }
 
-function getCurrentHour(city) {
-  const currentHour = new Date(city.location.localtime).getHours();
-  return currentHour;
-}
+// function getCurrentHour(city) {
+//   const currentHour = new Date(city.location.localtime).getHours();
+//   return currentHour;
+// }
 
-function dayOrNight(city, currentHour) {
-  const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
-  if (dayStatus === 1) {
-    return false;
-  } else {
-    return true;
-  }
-}
+// function dayOrNight(city, currentHour) {
+//   const dayStatus = city.forecast.forecastday[0].hour[currentHour].is_day;
+//   if (dayStatus === 1) {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }
 
-export function getConditionCode(city, currentHour) {
-  const conditionCode =
-    city.forecast.forecastday[0].hour[currentHour].condition.code;
-  return conditionCode;
-}
+// export function getConditionCode(city, currentHour) {
+//   const conditionCode =
+//     city.forecast.forecastday[0].hour[currentHour].condition.code;
+//   return conditionCode;
+// }
 
 function displayConditionImage(image) {
   const background = document.querySelector(".app");
   background.style.backgroundImage = `url(${image})`;
 }
+
+window.onload = function () {
+  console.log("huhu");
+  const cityName = localStorage.getItem("nameOfCity");
+  console.log(cityName);
+};
