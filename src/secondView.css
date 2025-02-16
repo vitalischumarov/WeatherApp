@@ -57,7 +57,8 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
-  margin: 1rem;
+  margin: 0.7rem;
+  cursor: pointer;
 }
 .favorite__description {
   display: flex;
@@ -66,6 +67,21 @@ body {
 .favorite__values {
   display: flex;
   flex-direction: column;
+}
+
+.rightBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  background-size: cover;
+}
+
+.deleteBox {
+  color: white;
+  padding: 0.5rem;
+  display: none;
+  align-items: center;
 }
 
 .city {

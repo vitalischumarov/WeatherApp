@@ -7,7 +7,7 @@ import {
   getCurrentHour,
 } from "./excludedFunction";
 
-export let cityName = newLoad();
+export let cityName = loadCityFromLocalStorage();
 // https://www.weatherapi.com/docs/#
 // const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -23,7 +23,6 @@ displayForcastInformationText(data);
 displayAllForeCast(data);
 renderNextDay(data);
 displayDetailView(data);
-newLoad();
 
 let isDay = dayOrNight(data, getCurrentHour(data));
 let conditionCode = getConditionCode(data, getCurrentHour(data));
@@ -199,7 +198,7 @@ function displayConditionImage(image) {
   background.style.backgroundImage = `url(${image})`;
 }
 
-function newLoad() {
+function loadCityFromLocalStorage() {
   const storedName = localStorage.getItem("nameOfCity");
   return storedName;
 }

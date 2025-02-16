@@ -7,8 +7,11 @@ import {
 } from "./excludedFunction";
 import { getConditionImagePath } from "./conditions";
 // import { cityName } from "./main";
+//
 
-const testCities = ["Basel", "Kyoto", "Moskau"];
+const testCities = ["Basel", "Kyoto", "Moskau", "Miami"];
+const editEl = document.querySelector(".header__button");
+let editCitiesActive = false;
 
 loadFavorietCities(testCities);
 
@@ -33,30 +36,35 @@ async function loadFavorietCities(city) {
 
 function displayCities(name, country, condition, temp, maxTemp, minTemp, img) {
   let city = `
-        <div class="favorite__description">
-          <span class="text city">${name}</span>
-            <span class="text">${country}</span>
-            <br />
-            <span class="text">${condition}</span>
-        </div>
-        <div class="favorite__values">
-            <span class="text temperature">${temp}</span>
-            <br />
-            <span class="text">H:${maxTemp} T:${minTemp}</span>
+        <div class="deleteBox ${name}"> delete </div>
+        <div class="rightBox" id="${name}" style="background-image: url(${img})">
+          <div class="favorite__description">
+            <span class="text city">${name}</span>
+              <span class="text">${country}</span>
+              <br />
+              <span class="text">${condition}</span>
+          </div>
+          <div class="favorite__values">
+              <span class="text temperature">${temp}°</span>
+              <br />
+              <span class="text">H:${maxTemp} T:${minTemp}</span>
+          </div>
         </div>`;
   const favorite = document.createElement("div");
   favorite.classList.add("favorite");
-  favorite.style.backgroundImage = `url(${img})`;
-  favorite.addEventListener("click", function () {
-    goToDetailView(name);
-  });
   favorite.innerHTML = city;
-
   const favoriteList = document.querySelector(".favoriteList");
   favoriteList.appendChild(favorite);
+  document.getElementById(name).addEventListener("click", function () {
+    goToDetailView(name);
+  });
+  document.querySelector(`.${name}`).addEventListener("click", function () {
+    console.log(`deleted ${name}`);
+  });
 }
 
 function goToDetailView(name) {
+  console.log(name);
   saveToLocalStorage(name);
   window.location.href = "./index.html";
 }
@@ -65,3 +73,19 @@ function saveToLocalStorage(name) {
   localStorage.setItem("nameOfCity", name);
   console.log("saved");
 }
+
+editEl.addEventListener("click", () => {
+  if (editCitiesActive) {
+    const allBoxes = document.querySelectorAll(".deleteBox");
+    allBoxes.forEach((box) => {
+      box.style.display = "none";
+      editCitiesActive = false;
+    });
+  } else {
+    const allBoxes = document.querySelectorAll(".deleteBox");
+    allBoxes.forEach((box) => {
+      box.style.display = "flex";
+      editCitiesActive = true;
+    });
+  }
+});
