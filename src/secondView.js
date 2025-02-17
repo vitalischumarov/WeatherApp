@@ -9,7 +9,7 @@ import { getConditionImagePath } from "./conditions";
 // import { cityName } from "./main";
 //
 
-const testCities = ["Basel", "Kyoto", "Moskau", "Miami"];
+let testCities = ["Basel", "Kyoto", "Moskau", "Miami"];
 const editEl = document.querySelector(".header__button");
 let editCitiesActive = false;
 
@@ -59,7 +59,7 @@ function displayCities(name, country, condition, temp, maxTemp, minTemp, img) {
     goToDetailView(name);
   });
   document.querySelector(`.${name}`).addEventListener("click", function () {
-    console.log(`deleted ${name}`);
+    deleteFavoriteCity(name);
   });
 }
 
@@ -89,3 +89,22 @@ editEl.addEventListener("click", () => {
     });
   }
 });
+
+function deleteFavoriteCity(cityName) {
+  for (let i = 0; i < testCities.length; i++) {
+    if (cityName === testCities[i]) {
+      testCities.splice(i, 1);
+    }
+  }
+  console.log(`es wurde ${cityName}. Array jetzt: ${testCities}.`);
+  deleteCurrentView();
+  loadFavorietCities(testCities);
+  editCitiesActive = false;
+}
+
+function deleteCurrentView() {
+  let allItems = document.querySelectorAll(".favorite");
+  allItems.forEach((item) => {
+    item.remove();
+  });
+}
