@@ -6,10 +6,11 @@ import {
   getCurrentHour,
 } from "./excludedFunction";
 import { getConditionImagePath } from "./conditions";
+import { loadCitiesFromLocalStorage } from "./localStorage";
 // import { cityName } from "./main";
 //
 
-let testCities = ["Basel", "Kyoto", "Moskau", "Miami"];
+let testCities = loadCitiesFromLocalStorage();
 const editEl = document.querySelector(".header__button");
 let editCitiesActive = false;
 

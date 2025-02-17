@@ -6,6 +6,7 @@ import {
   dayOrNight,
   getCurrentHour,
 } from "./excludedFunction";
+import { saveCityToLocalStorage } from "./localStorage";
 
 export let cityName = loadCityFromLocalStorage();
 // https://www.weatherapi.com/docs/#
@@ -15,7 +16,7 @@ const cityNameEl = document.querySelector(".city");
 const weatherEl = document.querySelector(".weather");
 const conditionEl = document.querySelector(".condition");
 const forcastEl = document.querySelector(".forcast");
-
+const saveButton = document.querySelector(".saveButton");
 // Hier werden alle wichtigen Funktionen aufgerufen, wenn die App startet
 let data = await fetchWeatherData(cityName);
 displayCityInformation(data);
@@ -202,3 +203,7 @@ function loadCityFromLocalStorage() {
   const storedName = localStorage.getItem("nameOfCity");
   return storedName;
 }
+
+saveButton.addEventListener("click", function () {
+  saveCityToLocalStorage(cityNameEl.innerHTML);
+});
