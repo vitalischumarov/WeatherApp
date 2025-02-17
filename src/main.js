@@ -6,9 +6,13 @@ import {
   dayOrNight,
   getCurrentHour,
 } from "./excludedFunction";
-import { saveCityToLocalStorage } from "./localStorage";
+import {
+  loadCitiesFromLocalStorage,
+  saveCityToLocalStorage,
+} from "./localStorage";
 
 export let cityName = loadCityFromLocalStorage();
+
 // https://www.weatherapi.com/docs/#
 // const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -24,6 +28,7 @@ displayForcastInformationText(data);
 displayAllForeCast(data);
 renderNextDay(data);
 displayDetailView(data);
+checkIfCityAvailable(cityNameEl.innerHTML);
 
 let isDay = dayOrNight(data, getCurrentHour(data));
 let conditionCode = getConditionCode(data, getCurrentHour(data));
@@ -207,3 +212,14 @@ function loadCityFromLocalStorage() {
 saveButton.addEventListener("click", function () {
   saveCityToLocalStorage(cityNameEl.innerHTML);
 });
+
+function checkIfCityAvailable(cityName) {
+  console.log("funktion wurde aufgerufen");
+  const cityList = loadCitiesFromLocalStorage();
+  for (let i = 0; i < cityList.length; i++) {
+    if (cityName === cityList[i]) {
+      saveButton.style.display = "none";
+      console.log("stadt ist vorhanden");
+    }
+  }
+}

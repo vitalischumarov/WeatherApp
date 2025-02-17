@@ -6,15 +6,21 @@ import {
   getCurrentHour,
 } from "./excludedFunction";
 import { getConditionImagePath } from "./conditions";
-import { loadCitiesFromLocalStorage } from "./localStorage";
-// import { cityName } from "./main";
-//
+import { loadCitiesFromLocalStorage, updateFavoriteList } from "./localStorage";
 
 let testCities = loadCitiesFromLocalStorage();
 const editEl = document.querySelector(".header__button");
 let editCitiesActive = false;
 
-loadFavorietCities(testCities);
+checkCities();
+
+function checkCities() {
+  if (testCities.length < 1) {
+    document.querySelector(".favoriteList").innerHTML = "keine favoriten";
+  } else {
+  }
+  loadFavorietCities(testCities);
+}
 
 async function loadFavorietCities(city) {
   for (let i = 0; i < city.length; i++) {
@@ -95,6 +101,8 @@ function deleteFavoriteCity(cityName) {
   for (let i = 0; i < testCities.length; i++) {
     if (cityName === testCities[i]) {
       testCities.splice(i, 1);
+      console.log(`neue Liste: ${testCities}`);
+      updateFavoriteList(testCities);
     }
   }
   console.log(`es wurde ${cityName}. Array jetzt: ${testCities}.`);

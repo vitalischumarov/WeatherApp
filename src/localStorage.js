@@ -21,3 +21,9 @@ function addCityToList(name) {
   }
   return list;
 }
+
+export function updateFavoriteList(favoriteList) {
+  console.log(`current List ist: ${favoriteList}`);
+  const formatedList = JSON.stringify(favoriteList);
+  localStorage.setItem("allFavoriteCities", formatedList);
+}
