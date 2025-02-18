@@ -1,14 +1,11 @@
+// // import "./loadingScreen.scss";
+
 export function showLoadingScreen() {
-  // document.querySelector(".currentWeather").style.display = "none";
-  const loadingText = "Loading...";
-  const loadingDiv = document.createElement("div");
-  loadingDiv.setAttribute("class", "loadingScreen");
-  loadingDiv.innerHTML = loadingText;
-  const rootElement = document.documentElement;
-  rootElement.appendChild(loadingDiv);
+  console.log("loading beginnt...");
+  document.querySelector(".app").style.display = "none";
 }
 
 export function deleteLoadingScreen() {
-  document.querySelector(".loadingScreen").remove();
-  // document.querySelector(".currentWeather").style.display = "flex";
+  console.log("loading zuende...");
+  document.querySelector(".app").style.display = "flex";
 }
