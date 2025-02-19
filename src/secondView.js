@@ -135,5 +135,25 @@ document
   });
 
 function displayPossibleCities(listOfCities) {
-  console.log(listOfCities.length);
+  const currentList = document.querySelectorAll(".predictions__city");
+  currentList.forEach((element) => {
+    element.remove();
+  });
+  for (let i = 0; i < listOfCities.length; i++) {
+    createUI(listOfCities[i].name, listOfCities[i].country);
+  }
+}
+
+function createUI(city, country) {
+  const predictions__city = document.createElement("div");
+  predictions__city.classList.add("predictions__city");
+  const cityName = document.createElement("span");
+  const cityNameText = document.createTextNode(city);
+  cityName.appendChild(cityNameText);
+  const countryName = document.createElement("span");
+  const countryNameText = document.createTextNode(country);
+  countryName.appendChild(countryNameText);
+  predictions__city.appendChild(cityName);
+  predictions__city.appendChild(countryName);
+  document.querySelector(".predictions").appendChild(predictions__city);
 }
