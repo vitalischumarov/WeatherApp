@@ -11,8 +11,8 @@ import {
   saveCityToLocalStorage,
 } from "./localStorage";
 
-export let cityName = loadCityFromLocalStorage();
-
+let cityName = loadCityFromLocalStorage();
+// export let cityName = "Tomsk";
 // https://www.weatherapi.com/docs/#
 // const WEATHER_API = `http://api.weatherapi.com/v1/forecast.json?key=4d9509708acc49a6a8740155253101&q=${cityName}&lang=DE&days=3`;
 
@@ -29,6 +29,10 @@ displayAllForeCast(data);
 renderNextDay(data);
 displayDetailView(data);
 checkIfCityAvailable(cityNameEl.innerHTML);
+
+// document.querySelector(".backIcon").addEventListener("click", () => {
+//   console.log("hello");
+// });
 
 let isDay = dayOrNight(data, getCurrentHour(data));
 let conditionCode = getConditionCode(data, getCurrentHour(data));

@@ -74,6 +74,7 @@ body {
     &__values {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
     }
 }
 

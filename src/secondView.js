@@ -1,5 +1,5 @@
 import "./secondView.scss";
-import { fetchWeatherData } from "./fetchData";
+import { fetchWeatherData, fetchCityNames } from "./fetchData";
 import {
   getConditionCode,
   dayOrNight,
@@ -11,6 +11,7 @@ import { loadCitiesFromLocalStorage, updateFavoriteList } from "./localStorage";
 let testCities = loadCitiesFromLocalStorage();
 const editEl = document.querySelector(".header__button");
 let editCitiesActive = false;
+let timeSinceTyped;
 
 checkCities();
 
@@ -119,4 +120,20 @@ function deleteCurrentView() {
   allItems.forEach((item) => {
     item.remove();
   });
+}
+
+document
+  .querySelector(".inputField__element")
+  .addEventListener("input", async () => {
+    clearTimeout(timeSinceTyped);
+    timeSinceTyped = setTimeout(async function () {
+      const result = await fetchCityNames(
+        `http://api.weatherapi.com/v1/search.json?q=${document.querySelector(".inputField__element").value}&key=4d9509708acc49a6a8740155253101`,
+      );
+      displayPossibleCities(result);
+    }, 2000);
+  });
+
+function displayPossibleCities(listOfCities) {
+  console.log(listOfCities.length);
 }

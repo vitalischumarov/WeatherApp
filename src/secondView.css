@@ -73,6 +73,7 @@ body {
 .favorite__values {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .rightBox {
