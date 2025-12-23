@@ -1,0 +1,11 @@
+.navigation {
+    color: white;
+    width: 100%;
+    font-size: 2rem;
+    padding-top: 1%;
+    padding-left: 1rem;
+}
+
+.navigation_backBtn:hover {
+    cursor: pointer;
+}
