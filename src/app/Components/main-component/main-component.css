@@ -1,0 +1,19 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.text {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    padding: 0.5rem;
+}
+
+.main_cityName {
+    font-size: 2rem;
+}
+
+.main_temperature {
+    font-size: 6rem;
+}
