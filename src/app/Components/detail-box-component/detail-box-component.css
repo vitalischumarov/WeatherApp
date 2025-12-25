@@ -1,0 +1,10 @@
+/* Diese CSS Einstellungen sollte ich irgendwo zentral speichern. */
+.main {
+    display: flex;
+    width: 88%;
+    /* mit margin: auto wird zentriert */
+    margin: auto; 
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
