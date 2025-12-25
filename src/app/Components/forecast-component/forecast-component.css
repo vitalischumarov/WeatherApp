@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px;
+    padding: 1rem;
+    box-shadow: 1px 1px black;
+    width: 85%;
+    margin: auto;
+    padding-bottom: 2rem;
+}
+
+.forecast {
+    display: flex;
+    gap: 2.5rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.text {
+    color: white;
+    font-size: 2rem;
+}
+
+.line {
+    margin: 1rem;
+}

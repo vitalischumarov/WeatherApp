@@ -1,0 +1,17 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px;
+    padding: 1rem;
+    box-shadow: 1px 1px black;
+    width: 85%;
+    /* mit margin: auto wird zentriert */
+    margin: auto; 
+    padding-bottom: 2rem;
+}
+
+.text {
+    color: white;
+    font-size: 2rem;
+    padding-bottom: 1.5rem;
+}
