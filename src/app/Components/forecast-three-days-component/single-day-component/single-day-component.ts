@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-single-day-component',
@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class SingleDayComponent {
 
+  maxTemp = input<string>('no temp');
+  maxWindSpeed = input<string>('no speed');
+  img = input<string>('no image');
 }

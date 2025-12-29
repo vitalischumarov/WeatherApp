@@ -1,7 +1,7 @@
 <div class="main">
-    <span class="text">Heute</span>
-    <img src="" alt="bild">
-    <span class="text">H:22</span>
-    <span class="text">T:12</span>
-    <span class="text">Wind: 17.6 km/h</span>
+    <span class="text">
+        <ng-content></ng-content>
+    </span>
+    <span class="text">{{maxTemp()}}</span>
+    <span class="text">Wind: {{maxWindSpeed()}} km/h</span>
 </div>

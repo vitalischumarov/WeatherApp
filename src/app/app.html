@@ -1,7 +1,10 @@
     <app-nav-component></app-nav-component>
 <div class="main">
-    <app-main-component></app-main-component>
+    <app-main-component [cityName]="mainComponentData.cityName" 
+                        [temperature]="mainComponentData.temperature"
+                        [condition]="mainComponentData.condition">
+    </app-main-component>
     <app-forecast-component></app-forecast-component>
-    <app-forecast-three-days-component></app-forecast-three-days-component>
+    <app-forecast-three-days-component [weatherData]="threeDaysForecastData"></app-forecast-three-days-component>
     <app-detail-box-component></app-detail-box-component>
 </div>

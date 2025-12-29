@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-main-component',
@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
 
+  cityName = input<string>('no city')
+  temperature = input<string>('no temperature')
+  condition = input<string>('no condition')
 }
