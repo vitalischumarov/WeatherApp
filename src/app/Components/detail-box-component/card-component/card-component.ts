@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-card-component',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './card-component.css',
 })
 export class CardComponent {
-
+  value = input<string>("empty");
+  attitude = input<string>('empty');  
 }

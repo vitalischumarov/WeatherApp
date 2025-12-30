@@ -1,6 +1,6 @@
 <div class="main">
-    <app-card-component></app-card-component>
-    <app-card-component></app-card-component>
-    <app-card-component></app-card-component>
-    <app-card-component></app-card-component>
+    <app-card-component attitude="Humidity" [value]="weatherData()!.humididy"></app-card-component>
+    <app-card-component attitude="Feels like" [value]="weatherData()!.feelsLike"></app-card-component>
+    <app-card-component attitude="sunrise" [value]="weatherData()!.sunrise"></app-card-component>
+    <app-card-component attitude="sunset" [value]="weatherData()!.sunset"></app-card-component>
 </div>

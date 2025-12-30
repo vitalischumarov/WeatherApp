@@ -12,7 +12,6 @@ export class ForecastThreeDaysComponent {
   weatherData = input.required<ThreeDaysForecastModel>();
   
   ngOnInit(){
-    console.log('forecastcomponent')
-    console.log(this.weatherData())
+
   }
 }

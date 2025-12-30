@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CardComponent } from './card-component/card-component';
+import { DetailComponentModel } from '../../DataModel/DetailComponentModel';
 
 @Component({
   selector: 'app-detail-box-component',
@@ -9,4 +10,5 @@ import { CardComponent } from './card-component/card-component';
 })
 export class DetailBoxComponent {
 
+  weatherData = input<DetailComponentModel>();
 }
