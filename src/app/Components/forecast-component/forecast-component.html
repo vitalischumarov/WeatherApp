@@ -1,29 +1,10 @@
 <div class="main">
-    <span class="text">Heute stellenweise Regenfall. Wind bis zu 17.6 km/h.</span>
+    <span class="text">Heute {{condition()}}. Wind bis zu {{windSpeed()}} km/h.</span>
     <hr class="line">
     <div class="forecast">
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
-        <app-single-hour-component></app-single-hour-component>
+        @for (data of weatherData(); track weatherData()) {
+            <app-single-hour-component [hour]="data.timeIntervall" [temperature]="data.temperatureIntervall"></app-single-hour-component>
+        }
+
     </div>
 </div>

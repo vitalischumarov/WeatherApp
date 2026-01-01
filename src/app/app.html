@@ -4,7 +4,7 @@
                         [temperature]="mainComponentData.temperature"
                         [condition]="mainComponentData.condition">
     </app-main-component>
-    <app-forecast-component></app-forecast-component>
+    <app-forecast-component [weatherData]="hourComponentData" [condition]="mainComponentData.condition" [windSpeed]="threeDaysForecastData.windSpeedOne"></app-forecast-component>
     <app-forecast-three-days-component [weatherData]="threeDaysForecastData"></app-forecast-three-days-component>
     <app-detail-box-component [weatherData]="detailComponentData"></app-detail-box-component>
 </div>

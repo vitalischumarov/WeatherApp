@@ -31,18 +31,14 @@ export class App implements OnInit{
   mainComponentData: MainComponentModel = new MainComponentModel();
   threeDaysForecastData: ThreeDaysForecastModel = new ThreeDaysForecastModel();
   detailComponentData: DetailComponentModel = new DetailComponentModel();
-  hourComponentData: HourComponentModel = {
-  windSpeed: '',
-  timeIntervall: [],
-  temperatureIntervall: [],
-};
+  hourComponentData: HourComponentModel[] = []
 
 
   maxTemp: string = ''
   maxWind: string = ''
  
   async ngOnInit(){
-    let data = await this._apiService.loadWeatherData("Unteriberg")
+    let data = await this._apiService.loadWeatherData("Regensberg")
     this.mainComponentData.cityName = data.location.name;
     this.mainComponentData.temperature = data.current.temp_c;
     this.mainComponentData.condition = data.current.condition.text;
@@ -68,12 +64,12 @@ export class App implements OnInit{
           daySelector++;
           i = 0;
         }
-        console.log("time is: "+ i)
-        console.log(data.forecast.forecastday[daySelector].hour[i].temp_c)
-        this.hourComponentData.timeIntervall[counter] = String(i);
-        this.hourComponentData.temperatureIntervall[i] = String(data.forecast.forecastday[daySelector].hour[i].temp_c)
+        const newElement: HourComponentModel ={
+          timeIntervall: String(i),
+          temperatureIntervall: String(data.forecast.forecastday[daySelector].hour[i].temp_c)
+        };
+        this.hourComponentData.push(newElement);
         counter++;
-        console.log('counter: '+counter)
       }
     }
     console.log(this.hourComponentData)

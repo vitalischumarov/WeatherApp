@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-single-hour-component',
@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class SingleHourComponent {
 
+  hour = input.required<string>();
+  temperature = input.required<string>();
 }
